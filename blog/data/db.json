@@ -1,0 +1,10 @@
+{
+    "posts":[
+        {
+            "id": 0,
+            "title": "Teste",
+            "autor": "Nobody",
+            "data": "Now"
+        }
+    ]
+}
