@@ -1,7 +1,7 @@
-const Mongoose = require('../db/conn')
-const { Schema } = Mongoose
+const mongoose = require('../db/conn')
+const { Schema } = mongoose
 
-const User = Mongoose.model(
+const User = mongoose.model(
     'User',
     new Schema({
         name:{
