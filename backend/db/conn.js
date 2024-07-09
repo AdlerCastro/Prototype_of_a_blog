@@ -1,7 +1,7 @@
 const mongoose = require('mongoose')
 
 async function main() {
-    await mongoose.connect('mongodb://localhost27017/blog')
+    await mongoose.connect('mongodb://localhost:27017/blog')
     console.log('Conectado ao Mongoose!')
 }
 
