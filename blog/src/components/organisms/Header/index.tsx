@@ -15,14 +15,13 @@ const Header = () => {
           <Link href="/Contacts">Contato</Link>
         </nav>
         <div className='interactions'>
-          <p>
+          <Link href='/Register'>
             Cadastre-se
-          </p>
-          <p>
+          </Link>
+          <Link href='/Login'>
             Login
-          </p>
+          </Link>
         </div>
-
       </div>
     </header>
   )
