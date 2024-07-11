@@ -1,16 +1,16 @@
 'use client'
 
 import React, { useState } from 'react'
-import { signIn } from 'next-auth/react'
+// import { signIn } from 'next-auth/react'
 import './styles.css'
+import { useRouter } from 'next/navigation'
 
 export default function Register() {
 
-  const[name, setName] = useState('')
-  const[email, setEmail] = useState('')
-  const[password, setPassword] = useState('')
+  const [error, setError] = useState("")
+  const router = useRouter()
 
-  async function handleSubmit(e: React.FormEvent<HTMLFormElement>){
+  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
 
@@ -20,12 +20,42 @@ export default function Register() {
       password: formData.get("password"),
     }
 
-    signIn("credentials", {
-      ...data,
-      callbackUrl: "",
-    })
+    const name = formData.get("name")
+    const email = formData.get("email")
+    const password = formData.get("password")
+
+    // signIn("credentials", {
+    //   ...data,
+    //   callbackUrl: "/About",
+    // })
 
     console.log(data)
+
+    try {
+      const res = await fetch("/api/register", {
+        method: "POST",
+        headers: {
+          "Content-Type": "aplication/json"
+        },
+        body: JSON.stringify({
+          name,
+          email,
+          password
+        })
+      })
+
+      if (res.status === 409) {
+        setError("Email já cadastrado")
+      } if (res.status === 201) {
+        setError("")
+        router.push("/Login")
+      }
+
+    } catch (error) {
+      setError("Error, tente novamente")
+      console.log(error)
+    }
+
   }
 
   return (
@@ -39,8 +69,6 @@ export default function Register() {
             placeholder='Digite seu nome'
             required
             className="input"
-            onChange={(e) => {setName(e.target.value)}}
-            value={name}
           />
         </label>
         <label>
@@ -51,9 +79,7 @@ export default function Register() {
             placeholder='Digite seu email'
             required
             className="input"
-            onChange={(e) => {setEmail(e.target.value)}}
-            value={email} 
-            />
+          />
         </label>
         <label>
           <span>Senha</span>
@@ -62,13 +88,11 @@ export default function Register() {
             name="password"
             placeholder='Digite sua senha'
             required
-            className="input" 
-            onChange={(e) => {setPassword(e.target.value)}}
-            value={password}
-            />
+            className="input"
+          />
         </label>
-        <button
-          type="submit">Enviar</button>
+        <button type="submit">Enviar</button>
+        <p>{error && error}</p>
       </form>
     </main>
   )
