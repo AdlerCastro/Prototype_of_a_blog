@@ -9,7 +9,7 @@ import createUserToken from 'backend/helpers/create-user-token'
 import getToken from 'backend/helpers/get-token'
 import { NextApiRequest, NextApiResponse } from 'next'
 
-module.exports = class UserController {
+export default class UserController {
     
     static async register(req:NextApiRequest, res:NextApiResponse) {
         /*Escrevendo as rotas necessárias para o registro --------------------------------- */
