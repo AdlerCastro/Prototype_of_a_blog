@@ -13,7 +13,7 @@ const User =
             required: true
         },
         password: {
-            type: Number,
+            type: String,
             required: true
         }
     }, {timestamps: true})
