@@ -29,13 +29,11 @@ export default function Register() {
     //   callbackUrl: "/About",
     // })
 
-    console.log(data)
-
     try {
       const res = await fetch("/api/register", {
         method: "POST",
         headers: {
-          "Content-Type": "aplication/json"
+          "Content-Type": "application/json"
         },
         body: JSON.stringify({
           name,
@@ -46,14 +44,16 @@ export default function Register() {
 
       if (res.status === 409) {
         setError("Email já cadastrado")
-      } if (res.status === 201) {
+      } 
+      
+      if (res.status === 201) {
         setError("")
         router.push("/Login")
       }
 
-    } catch (error) {
+    } catch (err) {
       setError("Error, tente novamente")
-      console.log(error)
+      console.log(err)
     }
 
   }
@@ -92,7 +92,7 @@ export default function Register() {
           />
         </label>
         <button type="submit">Enviar</button>
-        <p>{error && error}</p>
+        <p>{error}</p>
       </form>
     </main>
   )
