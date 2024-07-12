@@ -1,38 +1,42 @@
-// import NextAuth from 'next-auth'
-// import CredentialsProvider from "next-auth/providers/credentials"
+import NextAuth from "next-auth"
+import CredentialsProvider from "next-auth/providers/credentials"
+import User from '@/utils/models/User'
+import bcrypt from 'bcrypt'
+import Connect from '@/utils/database/db'
 
-// const handler = NextAuth({
+export const authOptions:any = {
+    // Configure one or more authentication providers
+    providers: [
+        CredentialsProvider({
+            id: "credentials",
+            name: "Credentials",
+            credentials: {
+                email: { label: "Email", type: "text" },
+                password: { label: "Password", type: "password" }
+            },
+            async authorize(credentials: any) {
+                await Connect();
+                try {
+                    const user = await User.findOne({ email: credentials.email })
 
-//     pages:{
-//         signIn: '/Login'
-//     },
+                    if (user) {
+                        const passwordCorrect = await bcrypt.compare(
+                            credentials.password,
+                            user.password
+                        )
+                        if (passwordCorrect) {
+                            return user;
+                        }
+                    }
 
-//     providers:[
-//         CredentialsProvider({  
-//           name: 'Credentials',
+                } catch (error: any) {
+                    throw new Error(error);
+                }
+            },
+        }),
+        // ...add more providers here
+    ],
+}
 
-//           credentials: {
-//             username: { label: "Username", type: "text", placeholder: "jsmith" },
-//             password: { label: "Password", type: "password" }
-//           },
-//           async authorize(credentials, req) {
-
-//             const res = await fetch("/your/endpoint", {
-//               method: 'POST',
-//               body: JSON.stringify(credentials),
-//               headers: { "Content-Type": "application/json" }
-//             })
-//             const user = await res.json()
-      
-//             // If no error and we have user data, return it
-//             if (res.ok && user) {
-//               return user
-//             }
-//             // Return null if user data could not be retrieved
-//             return null
-//           }
-//         })
-//       ]
-// })
-
-// export {handler as GET, handler as POST}
+export const handler = NextAuth(authOptions);
+export { handler as GET, handler as POST };
