@@ -1,33 +1,31 @@
 'use client'
 
-import React, { useState } from 'react'
-// import { signIn } from 'next-auth/react'
-import './styles.css'
+import React, { useEffect, useState } from 'react'
+import Link from 'next/link'
 import { useRouter } from 'next/navigation'
+
+import './styles.css'
+import { useSession } from 'next-auth/react'
 
 export default function Register() {
 
   const [error, setError] = useState("")
   const router = useRouter()
+  const { data: session, status: sessionStatus } = useSession();
+  
+  useEffect(() => {
+    if (sessionStatus === "authenticated") {
+      router.replace("/");
+    }
+  }, [sessionStatus, router]);
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
 
-    const data = {
-      name: formData.get("name"),
-      email: formData.get("email"),
-      password: formData.get("password"),
-    }
-
     const name = formData.get("name")
     const email = formData.get("email")
     const password = formData.get("password")
-
-    // signIn("credentials", {
-    //   ...data,
-    //   callbackUrl: "/About",
-    // })
 
     try {
       const res = await fetch("/api/register", {
@@ -58,42 +56,49 @@ export default function Register() {
 
   }
 
+  if (sessionStatus === "loading") {
+    return <h1>Calma...</h1>;
+  }
+
   return (
-    <main className='register'>
-      <form onSubmit={handleSubmit}>
-        <label>
-          <span>Nome</span>
-          <input
-            type="text"
-            name="name"
-            placeholder='Digite seu nome'
-            required
-            className="input"
-          />
-        </label>
-        <label>
-          <span>Email</span>
-          <input
-            type="email"
-            name="email"
-            placeholder='Digite seu email'
-            required
-            className="input"
-          />
-        </label>
-        <label>
-          <span>Senha</span>
-          <input
-            type="password"
-            name="password"
-            placeholder='Digite sua senha'
-            required
-            className="input"
-          />
-        </label>
-        <button type="submit">Enviar</button>
-        <p>{error}</p>
-      </form>
-    </main>
+    sessionStatus !== "authenticated" && (
+      <main className='register'>
+        <form onSubmit={handleSubmit}>
+          <label>
+            <span>Nome</span>
+            <input
+              type="text"
+              name="name"
+              placeholder='Digite seu nome'
+              required
+              className="input"
+            />
+          </label>
+          <label>
+            <span>Email</span>
+            <input
+              type="email"
+              name="email"
+              placeholder='Digite seu email'
+              required
+              className="input"
+            />
+          </label>
+          <label>
+            <span>Senha</span>
+            <input
+              type="password"
+              name="password"
+              placeholder='Digite sua senha'
+              required
+              className="input"
+            />
+          </label>
+          <button type="submit">Enviar</button>
+          <p>{error}</p>
+          <Link href='/Login'>Já tem uma conta? Acesse</Link>
+        </form>
+      </main>
+    )
   )
 }
