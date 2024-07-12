@@ -5,40 +5,31 @@ import { NextResponse } from 'next/server'
 // Cripitografia
 import bcrypt from 'bcrypt'
 
-export const POST = async (req:any) => {
-    try {
-        const {name, email, password} = await req.json()
+export const POST = async (request: any) => {
 
-        await Connect()
+    const { name, email, password } = await request.json()
 
-        const emailExists = await User.findOne({email})
+    await Connect();
 
-        if (emailExists) {
-            return NextResponse.json({
-                message: "Email já cadastrado!",
-                status: 409
-            })
-        }
+    const emailExists = await User.findOne({ email });
 
-        const hashedPassword = await bcrypt.hash(password, 5)
-
-        const newUser = new User({
-            name,
-            email,
-            password: hashedPassword
-        });
-
-        await newUser.save()
-
-        return NextResponse.json({
-            message: "Email cadastrado com sucesso!",
-            status: 201
-        })
-
-    } catch (error) {
-        return NextResponse.json({
-            message: "Erro ao cadastrar",
-            status: 500
-        })
+    if (emailExists) {
+        return new NextResponse("Email já cadastrado!", { status: 409 })
     }
-}
+
+    const hashedPassword = await bcrypt.hash(password, 5)
+
+    const newUser = new User({
+        name,
+        email,
+        password: hashedPassword
+    });
+
+    try {
+        await newUser.save()
+        return new NextResponse("Email cadastrado com sucesso!", { status: 201 });
+
+    } catch (err: any) {
+        return new NextResponse("Erro ao cadastrar", { status: 500 });
+    }
+};
