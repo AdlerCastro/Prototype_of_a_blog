@@ -1,4 +1,4 @@
-.register{
+.login{
     width: 100%;
     height: 83.3vh;
     display: flex;
@@ -7,17 +7,17 @@
     flex-direction: column;
 }
 
-.register form{
+.login form{
     padding: 10px;
     background: rgba(0, 255, 255, 0.705);
     color: black;
 }
 
-.register p{
+.login p{
     color: black;
 }
 
-.register form, .register label{
+.login form, .login label{
     display: flex;
     flex-direction: column;
     gap: 20px;
