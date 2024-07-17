@@ -20,7 +20,7 @@ const Header = () => {
           <Link href="/">Início</Link>
           <Link href="/Posts">Publicações</Link>
           <Link href="/About">Sobre</Link>
-          <Link href="/Contacts">Contato</Link>
+          {/* <Link href="/Contacts">Contato</Link> */}
         </nav>
         {!session ? (
           <div className='interactions'>
@@ -34,8 +34,7 @@ const Header = () => {
 
         ) : (
           <div className='interactions'>
-            {session.user?.email}
-            <Button onClick={() => {signOut()}} className="logout">
+            <Button onClick={() => { signOut() }} className="logout">
               Sair
             </Button>
           </div>

@@ -1,5 +1,21 @@
 .hero{
+    justify-content: center;
+    background: rgb(34, 34, 34);
+    padding-inline: 30px;
+    height: 85%;
+
+    text-align: center;
+    gap: 20px;
+}
+
+.hero h1{
+    font-size: 80px;
+}
+
+.text-box-hero{
+    
     display: flex;
-    align-items: center;
-    height: calc(100vh - 86px);
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
 }

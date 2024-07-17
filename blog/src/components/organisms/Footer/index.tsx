@@ -1,3 +1,4 @@
+import Link from 'next/link'
 import './styles.css'
 
 const Footer = () => {
@@ -5,7 +6,7 @@ const Footer = () => {
     <footer className='footer'>
       <div className='contacts'>
         <h2>Contacts</h2>
-        <p>b1-9u1u24-94i=210</p>
+        <Link href='https://github.com/AdlerCastro/' target='_blank'>Adler Castro</Link>
       </div>
       <div>
         <p>Desenvolvido por Adler Castro</p>
