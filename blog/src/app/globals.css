@@ -15,4 +15,12 @@ html, body{
   height: 100vh;
   background: var(--background-default);
   color: var(--color-default);
+  scroll-behavior: smooth;
+}
+
+main{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  scroll-behavior: smooth;
 }
