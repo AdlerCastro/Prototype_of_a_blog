@@ -1,14 +1,18 @@
 .main-about{
-    height: 85%;
     gap: 30px;
     overflow-y: auto;
     padding-block: 10px;
     padding-inline: 30px;
     align-items: start;
+
+    background: var(--background-about);
+    background-size: 400% 400%;
+    transition: all;
+    animation: gradient 5s ease infinite;
 }
 
 .main-about h1{
-    text-align: center;
+    align-self: center;
 }
 
 .with-subtopics{
@@ -39,3 +43,15 @@
     background-color: rgb(109, 109, 109);
     border-radius: 50px;
   }
+
+  @keyframes gradient {
+	0% {
+		background-position: 0% 50%;
+	}
+	50% {
+		background-position: 100% 50%;
+	}
+	100% {
+		background-position: 0% 50%;
+	}
+}
