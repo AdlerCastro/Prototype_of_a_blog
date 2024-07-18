@@ -18,7 +18,13 @@
 }
 
 .footer a{
-    text-decoration: none;
+    text-decoration: underline;
     color: var(--color-default);
-    border-bottom: solid 1px;
+    transition: all 0.1s;
+}
+
+.footer a:hover{
+    color: var(--color-default);
+    transition: all 0.1s;
+    transform: scale(1.05);
 }

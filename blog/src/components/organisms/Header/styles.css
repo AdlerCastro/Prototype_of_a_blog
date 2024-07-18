@@ -14,21 +14,6 @@
     border-bottom: solid 1px var(--background-default);
 }
 
-.navBar a, .header p{
-    text-decoration: none;
-    color: white;
-}
-
-.navBar a:hover {
-    transform: scale(1.05);
-}
-
-.interactions a {
-    text-decoration: none;
-}
-
-
-
 .image{
     width: 70px;
     height: 70px;
@@ -48,11 +33,28 @@
     gap: 20px;
 }
 
+.navBar a{
+    padding: 10px;
+    text-decoration: none;
+    color: white;
+    transition: all 0.1s;
+}
+
+.navBar a:hover {
+    transform: scale(1.05);
+    transition: all 0.1s;
+}
+
 .interactions{
     display: flex;
     flex-direction: row;
     align-items: center;
     gap: 20px;
+}
+
+.interactions a {
+    text-decoration: none;
+    transition: all 0.1s
 }
 
 .button-logout{
