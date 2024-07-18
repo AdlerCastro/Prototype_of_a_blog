@@ -1,6 +1,5 @@
 .Posts{
     position: relative;
-    height: 85%;
     gap: 20px;
 }
 
@@ -18,7 +17,12 @@
     color: var(--color-default);
     padding: 10px;
     background: blue;
-    border-radius: 20%;
+    border-radius: 20px;
+}
+
+.top-posts a:hover{
+    background: rgba(0, 0, 255, 0.800);
+    transform: scale(1.05);
 }
 
 .view-posts{
