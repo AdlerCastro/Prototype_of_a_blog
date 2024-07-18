@@ -1,23 +1,60 @@
 .login{
-    width: 100%;
-    display: flex;
-    align-items: center;
     justify-content: center;
-    flex-direction: column;
 }
 
 .login form{
-    padding: 10px;
-    background: rgba(0, 255, 255, 0.705);
-    color: black;
-}
-
-.login p{
-    color: black;
-}
-
-.login form, .login label{
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    gap: 30px;
+    padding: 20px;
+    border-radius: 10px;
+    background: rgba(0, 255, 255, 0.76);
+    color: black;
+}
+
+.login label{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.login input{
+    width: 300px;
+    font-size: medium;
+}
+
+.login button{
+    width: 40%;
+    align-self: center;
+    font-size: medium;
+    padding: 5px;
+    padding-block: 10px;
+
+    color: white;
+    background: blue;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.1s;
+}
+
+.login button:hover{
+    transform: scale(1.05);
+    background: rgb(0, 0, 167);
+}
+
+.login span, .login a{
+    text-align: center;
+    text-decoration: underline;
+    transition: all 0.1s;
+    color: black;
+}
+
+.login a:hover{
+    transform: scale(1.05);
+    color: rgba(255, 255, 255, 0.815);
+}
+
+.login span { 
+    font-weight: bold;
 }

@@ -41,7 +41,7 @@ export default function Register() {
       })
 
       if (res.status === 409) {
-        setError("Email já cadastrado")
+        setError("*Email já cadastrado*")
       } 
       
       if (res.status === 201) {
@@ -65,7 +65,7 @@ export default function Register() {
       <main className='register'>
         <form onSubmit={handleSubmit}>
           <label>
-            <span>Nome</span>
+            <h3>Nome</h3>
             <input
               type="text"
               name="name"
@@ -75,7 +75,7 @@ export default function Register() {
             />
           </label>
           <label>
-            <span>Email</span>
+            <h3>Email</h3>
             <input
               type="email"
               name="email"
@@ -85,7 +85,7 @@ export default function Register() {
             />
           </label>
           <label>
-            <span>Senha</span>
+            <h3>Senha</h3>
             <input
               type="password"
               name="password"
@@ -95,7 +95,7 @@ export default function Register() {
             />
           </label>
           <button type="submit">Enviar</button>
-          <p>{error}</p>
+          <span>{error}</span>
           <Link href='/Login'>Já tem uma conta? Acesse</Link>
         </form>
       </main>

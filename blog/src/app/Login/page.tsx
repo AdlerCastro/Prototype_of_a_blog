@@ -49,7 +49,7 @@ export default function Login () {
       <main className='login'>
         <form onSubmit={handleSubmit}>
           <label>
-            <span>Email</span>
+            <h3>Email</h3>
             <input
               type="email"
               name="email"
@@ -59,7 +59,7 @@ export default function Login () {
             />
           </label>
           <label>
-            <span>Senha</span>
+            <h3>Senha</h3>
             <input
               type="password"
               name="password"
@@ -69,7 +69,7 @@ export default function Login () {
             />
           </label>
           <button type="submit">Entrar</button>
-          <p>{error}</p>
+          <span>{error}</span>
           <Link href='/Register'>Registre-se</Link>
         </form>
       </main>
