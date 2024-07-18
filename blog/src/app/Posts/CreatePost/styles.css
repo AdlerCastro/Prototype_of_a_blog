@@ -1,13 +1,11 @@
-.create-post{
-    position: relative;
+.create-post {
     padding-block: 10px;
-    gap: 20px;
 }
 
 .create-post a {
     position: absolute;
     right: 10px;
-    
+
     color: var(--color-default);
     padding: 10px;
     background: blue;
@@ -17,7 +15,59 @@
     transition: all 0.1s;
 }
 
-.create-post a:hover{
+.create-post a:hover {
     background: rgba(0, 0, 255, 0.800);
     transform: scale(1.05);
+}
+
+.space-form {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-bottom: 50px;
+}
+
+.form-create-post {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+
+    padding: 30px;
+    border-radius: 10px;
+
+    background: rgb(39, 39, 39);
+    color: white;
+}
+
+.form-create-post input {
+    margin-bottom: 10px;
+    width: 300px;
+    font-size: medium;
+}
+
+.form-create-post textarea {
+    height: 100px;
+    font-size: medium;
+}
+
+.form-create-post button{
+    width: 40%;
+    align-self: center;
+    font-size: medium;
+    padding: 5px;
+    padding-block: 10px;
+
+    color: white;
+    background: blue;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.1s;
+}
+
+.form-create-post button:hover{
+    transform: scale(1.05);
+    background: rgb(0, 0, 167);
 }

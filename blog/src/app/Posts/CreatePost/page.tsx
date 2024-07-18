@@ -52,23 +52,24 @@ export default function CreatePost() {
     <main className='create-post'>
       <h1>Criando Post</h1>
       <Link href='/Posts'>Voltar</Link>
-      <form onSubmit={createPost}>
-        <h4>Título</h4>
-        <input
-          type="text"
-          name="title"
-          required
-          className='input'
-        />
-        <h4>Descrição</h4>
-        <input
-          type="text"
-          name="description"
-          required
-          className='input'
-        />
-        <button type='submit'>Criar</button>
-      </form>
+      <div className='space-form'>
+        <form onSubmit={createPost} className='form-create-post'>
+          <h4>Título</h4>
+          <input
+            type="text"
+            name="title"
+            required
+            className='input'
+          />
+          <h4>Descrição</h4>
+          <textarea
+            name="description"
+            required
+            className='input'
+          />
+          <button type='submit'>Criar</button>
+        </form>
+      </div>
     </main>
   )
 }
