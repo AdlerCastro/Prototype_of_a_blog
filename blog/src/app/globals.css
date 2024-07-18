@@ -1,7 +1,8 @@
 :root{
   --background-default: black;
   --color-default: white;
-  --background-footer: rgb(22, 22, 22)
+  --background-footer: rgb(22, 22, 22);
+  --background-about: linear-gradient(170deg, #000000 40%, #000072, #0000b6);
 }
 
 *{
