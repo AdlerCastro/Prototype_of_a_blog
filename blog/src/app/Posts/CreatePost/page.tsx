@@ -1,17 +1,24 @@
 'use client'
 
-// import { getServerSession } from 'next-auth';
-// import { redirect } from 'next/navigation';
-import React from 'react'
+import { useEffect } from 'react'
+import { useRouter } from 'next/navigation'
+import { useSession } from 'next-auth/react'
 
 export default function CreatePost() {
 
-  // // Verificação de usuário logado
-  // const session = await getServerSession();
+  const router = useRouter();
+  const { data: session, status: sessionStatus } = useSession();
 
-  // if (!session) {
-  //   redirect("/Login");
-  // }
+  // Verificação de usuário logado
+  useEffect(() => {
+    if (sessionStatus === 'unauthenticated') {
+      router.replace("/Login")
+    }
+  }, [sessionStatus, router])
+
+  if (sessionStatus === "loading") {
+    return <h1>Calma...</h1>;
+  }
 
   async function createPost(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();

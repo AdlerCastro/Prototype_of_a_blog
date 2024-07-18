@@ -1,16 +1,27 @@
-import { getServerSession } from 'next-auth'
-import { redirect } from 'next/navigation'
+'use client'
+
+import { useEffect } from 'react'
+import { useRouter } from 'next/navigation'
+import { useSession } from 'next-auth/react'
 import Link from 'next/link'
 import './styles.css'
 
-const Posts = async () => {
+export default function Posts() {
+    
+    const router = useRouter();
+    const { data: session, status: sessionStatus } = useSession();
 
     // Verificação de usuário logado
-    const session = await getServerSession();
+    useEffect(() => {
+        if (sessionStatus === 'unauthenticated') {
+          router.replace("/Login")
+        }
 
-    if (!session) {
-        redirect("/Login");
-    }
+      }, [sessionStatus, router])
+
+      if (sessionStatus === "loading") {
+        return <h1>Calma...</h1>;
+      }
 
     return (
         <main className='Posts'>
@@ -24,5 +35,3 @@ const Posts = async () => {
         </main>
     )
 }
-
-export default Posts
