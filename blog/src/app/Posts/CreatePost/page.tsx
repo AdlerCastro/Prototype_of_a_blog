@@ -3,6 +3,9 @@
 import { useEffect } from 'react'
 import { useRouter } from 'next/navigation'
 import { useSession } from 'next-auth/react'
+import Link from 'next/link';
+
+import './styles.css'
 
 export default function CreatePost() {
 
@@ -46,8 +49,9 @@ export default function CreatePost() {
   }
 
   return (
-    <main>
+    <main className='create-post'>
       <h1>Criando Post</h1>
+      <Link href='/Posts'>Voltar</Link>
       <form onSubmit={createPost}>
         <h4>Título</h4>
         <input
