@@ -7,10 +7,9 @@ import { signIn, useSession } from 'next-auth/react'
 
 import './styles.css'
 
-const Login = () => {
+export default function Login () {
   const [error, setError] = useState("");
   const router = useRouter();
-  // const session = useSession();
   const { data: session, status: sessionStatus } = useSession();
 
   useEffect(() => {
@@ -77,5 +76,3 @@ const Login = () => {
     )
   )
 }
-
-export default Login
