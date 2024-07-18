@@ -24,17 +24,17 @@ const Header = () => {
         </nav>
         {!session ? (
           <div className='interactions'>
-            <Link href='/Register'>
+            <Link href='/Register' className='button-register'>
               Cadastre-se
             </Link>
-            <Link href='/Login'>
+            <Link href='/Login' className='button-logout'>
               Login
             </Link>
           </div>
 
         ) : (
           <div className='interactions'>
-            <Button onClick={() => { signOut() }} className="logout">
+            <Button onClick={() => { signOut() }} className="button-logout">
               Sair
             </Button>
           </div>
