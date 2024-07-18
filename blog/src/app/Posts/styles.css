@@ -1,26 +1,25 @@
 .Posts{
     position: relative;
-    gap: 20px;
-}
-
-.top-posts{
     display: flex;
     align-items: center;
     padding-block: 10px;
+    gap: 20px;
 }
 
-.top-posts a {
+.Posts a {
     position: absolute;
     right: 10px;
     
-    text-decoration: none;
     color: var(--color-default);
     padding: 10px;
     background: blue;
     border-radius: 20px;
+
+    text-decoration: none;
+    transition: all 0.1s;
 }
 
-.top-posts a:hover{
+.Posts a:hover{
     background: rgba(0, 0, 255, 0.800);
     transform: scale(1.05);
 }
