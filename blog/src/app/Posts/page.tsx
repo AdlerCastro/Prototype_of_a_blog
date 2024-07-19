@@ -41,7 +41,7 @@ export default function Posts() {
       <Link href='/Posts/CreatePost'>+Criar</Link>
       <div className='view-posts'>
         {posts.map((post: any) => (
-          <div key={post.id} className='card-post'>
+          <div key={post._id} className='card-post'>
             <h2>{post.title}</h2>
             <p>{post.description}</p>
           </div>
