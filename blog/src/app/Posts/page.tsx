@@ -1,15 +1,28 @@
 'use client'
 
-import { useEffect, useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { useSession } from 'next-auth/react'
+import { getPosts } from '../actions/posts'
+import { useEffect, useState } from 'react'
+
 import Link from 'next/link'
 import './styles.css'
 
 export default function Posts() {
-
   const { data: session, status: sessionStatus } = useSession();
   const router = useRouter();
+
+  // Resgatando os dados dos posts do BD
+  const [posts, setPosts] = useState([]);
+
+  useEffect(() => {
+    getPosts().then((data: any) => {
+      if (data.error) {
+        return console.error(data.error)
+      }
+      setPosts(data)
+    })
+  }, [])
 
   // Verificação de usuário logado
   useEffect(() => {
@@ -17,21 +30,22 @@ export default function Posts() {
       router.replace("/Login")
     }
   }, [sessionStatus, router])
-    
+
   if (sessionStatus === "loading") {
     return <h1>Calma...</h1>;
   }
-
-  // Resgatando os dados dos posts do BD
-  const [posts, setPets] = useState([])
 
   return (
     <main className='Posts'>
       <h1>Posts</h1>
       <Link href='/Posts/CreatePost'>+Criar</Link>
       <div className='view-posts'>
-        <h2>Os posts ficarão aqui</h2>
-        
+        {posts.map((post: any) => (
+          <div key={post.id} className='card-post'>
+            <h2>{post.title}</h2>
+            <p>{post.description}</p>
+          </div>
+        ))}
       </div>
     </main>
   )
