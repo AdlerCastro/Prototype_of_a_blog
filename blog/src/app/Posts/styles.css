@@ -26,6 +26,22 @@
 
 .view-posts{
     overflow-y: auto;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.card-post{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    gap: 10px;
+
+    padding: 30px;
+    border-radius: 10px;
+    background: var(--background-footer);
+
 }
 
 .view-posts::-webkit-scrollbar{
