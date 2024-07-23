@@ -12,14 +12,8 @@ export default function Register() {
   const [error, setError] = useState("")
   const router = useRouter()
   const { data: session, status: sessionStatus } = useSession();
-  
-  useEffect(() => {
-    if (sessionStatus === "authenticated") {
-      router.replace("/");
-    }
-  }, [sessionStatus, router]);
 
-  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+  async function createUser(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
 
@@ -56,14 +50,9 @@ export default function Register() {
 
   }
 
-  if (sessionStatus === "loading") {
-    return <h1>Calma...</h1>;
-  }
-
   return (
-    sessionStatus !== "authenticated" && (
       <main className='register'>
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={createUser}>
           <label>
             <h3>Nome</h3>
             <input
@@ -100,5 +89,4 @@ export default function Register() {
         </form>
       </main>
     )
-  )
 }
