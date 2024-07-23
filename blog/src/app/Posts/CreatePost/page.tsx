@@ -1,57 +1,52 @@
 'use client'
 
-import { useEffect } from 'react'
 import { useRouter } from 'next/navigation'
-import { useSession } from 'next-auth/react'
-import Link from 'next/link';
+import { useMutation } from 'react-query';
 
+import Button from '@/components/atoms/Button';
 import './styles.css'
 
 export default function CreatePost() {
 
   const router = useRouter();
-  const { data: session, status: sessionStatus } = useSession();
 
-  // Verificação de usuário logado
-  useEffect(() => {
-    if (sessionStatus === 'unauthenticated') {
-      router.replace("/Login")
-    }
-  }, [sessionStatus, router])
-
-  if (sessionStatus === "loading") {
-    return <h1>Calma...</h1>;
+  const routerBack = () => {
+    router.back()
   }
 
+  
   async function createPost(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
+    
+    const mutation = useMutation({
+      mutationFn: async () => {
+        return fetch("/api/createPost")
+      },
+    })
 
-    const formData = new FormData(e.currentTarget)
+    mutation.mutate()
 
-    const title = formData.get("title")
-    const description = formData.get("description")
+  //   try {
+  //     await fetch("/api/createPost", {
+  //       method: "POST",
+  //       headers: {
+  //         "Content-Type": "application/json"
+  //       },
+  //       body: JSON.stringify({
+  //         title,
+  //         description
+  //       })
+  //     })
 
-    try {
-      await fetch("/api/createPost", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify({
-          title,
-          description
-        })
-      })
-
-    } catch (error) {
-      console.log(error)
-    }
+  //   } catch (error) {
+  //     console.log(error)
+  //   }
   }
 
   return (
     <main className='create-post'>
       <h1>Criando Post</h1>
-      <Link href='/Posts'>Voltar</Link>
+      <Button className = "routerBack" onClick={() => routerBack()}>Voltar</Button>
       <div className='space-form'>
         <form onSubmit={createPost} className='form-create-post'>
           <h4>Título</h4>
