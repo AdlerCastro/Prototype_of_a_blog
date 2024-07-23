@@ -1,0 +1,6 @@
+.loading {
+    display: flex;
+    height: 85%;
+    justify-content: center;
+    align-items: center;
+}
