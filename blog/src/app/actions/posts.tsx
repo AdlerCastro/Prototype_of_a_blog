@@ -10,9 +10,6 @@ export async function getPosts() {
         }
         
         const posts = await res.json()
-        // posts.results.forEach((post:any, index:any) => {
-        //     post.id = index + 1;
-        // })
 
         return posts;
         
