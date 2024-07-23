@@ -10,13 +10,6 @@ import './styles.css'
 export default function Login () {
   const [error, setError] = useState("");
   const router = useRouter();
-  const { data: session, status: sessionStatus } = useSession();
-
-  useEffect(() => {
-    if (sessionStatus === 'authenticated') {
-      router.replace("/")
-    }
-  }, [sessionStatus, router])
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -40,12 +33,7 @@ export default function Login () {
     }
   }
 
-  if (sessionStatus === "loading") {
-    return <h1>Calma...</h1>;
-  }
-
   return (
-    sessionStatus !== "authenticated" && (
       <main className='login'>
         <form onSubmit={handleSubmit}>
           <label>
@@ -74,5 +62,4 @@ export default function Login () {
         </form>
       </main>
     )
-  )
 }
