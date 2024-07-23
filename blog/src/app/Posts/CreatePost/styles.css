@@ -2,20 +2,21 @@
     padding-block: 10px;
 }
 
-.create-post a {
+.routerBack {
     position: absolute;
     right: 10px;
 
     color: var(--color-default);
     padding: 10px;
     background: blue;
+    border: none;
     border-radius: 20px;
 
     text-decoration: none;
     transition: all 0.1s;
 }
 
-.create-post a:hover {
+.routerBack:hover {
     background: rgba(0, 0, 255, 0.800);
     transform: scale(1.05);
 }

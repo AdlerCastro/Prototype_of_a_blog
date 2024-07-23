@@ -6,20 +6,21 @@
     gap: 20px;
 }
 
-.Posts a {
+.buttonRouter {
     position: absolute;
     right: 10px;
     
     color: var(--color-default);
     padding: 10px;
     background: blue;
+    border: none;
     border-radius: 20px;
 
     text-decoration: none;
     transition: all 0.1s;
 }
 
-.Posts a:hover{
+.buttonRouter:hover{
     background: rgba(0, 0, 255, 0.800);
     transform: scale(1.05);
 }
