@@ -5,6 +5,9 @@ import bcrypt from 'bcrypt'
 import Connect from '@/utils/database/db'
 
 export const authOptions:any = {
+    pages: {
+        signIn: '/Login'
+    },
     // Configure one or more authentication providers
     providers: [
         CredentialsProvider({
