@@ -1,9 +1,9 @@
 'use client'
 
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
-import { signIn, useSession } from 'next-auth/react'
+import { signIn } from 'next-auth/react'
 
 import './styles.css'
 
@@ -29,7 +29,8 @@ export default function Login () {
       if (res?.url) router.replace("/");
 
     } else {
-      setError("")
+      setError("");
+      router.replace("/")
     }
   }
 
