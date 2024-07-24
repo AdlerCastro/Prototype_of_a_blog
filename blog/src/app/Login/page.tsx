@@ -26,11 +26,11 @@ export default function Login () {
 
     if (res?.error) {
       setError("Email ou senha inválido(s)");
-      if (res?.url) router.replace("/");
 
     } else {
       setError("");
-      router.replace("/")
+      alert("Login Realizado com sucesso")
+      router.replace("/Posts")
     }
   }
 
