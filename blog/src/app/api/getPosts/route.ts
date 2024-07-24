@@ -1,6 +1,5 @@
 import Connect from '@/utils/database/db'
 import Posts from '@/utils/models/Posts'
-
 import { NextResponse } from 'next/server'
 
 export const GET = async () => {
@@ -8,6 +7,7 @@ export const GET = async () => {
 
     try {
         const posts = await Posts.find();
+        console.log(posts)
         return new NextResponse(JSON.stringify(posts), {status: 203});
 
     } catch (error) {

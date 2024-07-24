@@ -4,7 +4,7 @@ export async function getPosts() {
 
     try {
         const res = await fetch("http://localhost:3000/api/getPosts")
-
+        console.log(res);
         if (!res.ok) {
             throw new Error(`HTTP error! status: ${res.status}`);
         }
