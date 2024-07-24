@@ -1,7 +1,4 @@
-.Posts{
-    position: relative;
-    display: flex;
-    align-items: center;
+.Posts h1{
     padding-block: 10px;
     gap: 20px;
 }
