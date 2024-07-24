@@ -1,0 +1,46 @@
+.view-details-posts h1{
+   padding-block: 10px;
+}
+
+.routerBack {
+    position: absolute;
+    right: 10px;
+
+    color: var(--color-default);
+    padding: 10px;
+    background: blue;
+    border: none;
+    border-radius: 20px;
+
+    text-decoration: none;
+    transition: all 0.1s;
+}
+
+.routerBack:hover {
+    background: rgba(0, 0, 255, 0.800);
+    transform: scale(1.05);
+}
+
+.space-view{
+    position: relative;
+    display: flex;
+    flex: 1 1 0%;
+    width: 100%;
+    background: var(--background-default);
+}
+
+.card-post-details{
+    position: absolute;
+    top: 40%;
+    right: calc(50% - 160px);
+    
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 10px;
+
+    padding: 30px;
+    border-radius: 10px;
+    background: var(--background-footer);
+}
