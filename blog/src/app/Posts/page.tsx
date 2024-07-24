@@ -1,6 +1,6 @@
 'use client'
 
-import { getPosts } from '../actions/posts'
+import { getPosts } from '../actions/getPosts'
 import { useQuery } from 'react-query'
 import { useRouter } from 'next/navigation'
 
