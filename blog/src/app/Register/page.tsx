@@ -1,17 +1,15 @@
 'use client'
 
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 
 import './styles.css'
-import { useSession } from 'next-auth/react'
 
 export default function Register() {
 
   const [error, setError] = useState("")
   const router = useRouter()
-  const { data: session, status: sessionStatus } = useSession();
 
   async function createUser(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -40,6 +38,7 @@ export default function Register() {
       
       if (res.status === 201) {
         setError("")
+        alert("Email cadastrado com sucesso!")
         router.push("/Login")
       }
 
