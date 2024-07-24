@@ -1,8 +1,9 @@
 'use server'
 
-export async function getPostById(_id: any) {
+export async function getPostById(_id: string) {
   try {
-    const res = await fetch(`/api/getPosts/getPostById/${_id}`);
+    const res = await fetch(`http://localhost:3000/api/getPostById/${_id}`);
+    console.log(res)
     console.log('Resgatando o post com ID:', _id);
 
     if (!res.ok) {
@@ -10,13 +11,11 @@ export async function getPostById(_id: any) {
       throw new Error('Falha ao resgatar o post');
     }
 
-    const posts = await res.json()
+    const post = await res.json()
 
-    return posts;
+    return post;
 
-  } catch (e:any) {
-    return{
-        error: e.message
-    }
+  } catch (e: any) {
+    throw new Error(e.message);
   }
 }
