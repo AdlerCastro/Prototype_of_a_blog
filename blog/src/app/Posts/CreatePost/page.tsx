@@ -1,11 +1,9 @@
 'use client'
 
 import { useRouter } from 'next/navigation'
-import { useMutation } from 'react-query';
 
 import Button from '@/components/atoms/Button';
 import './styles.css'
-import { POST } from '@/app/api/createPost/route';
 
 export default function CreatePost() {
 
@@ -15,20 +13,11 @@ export default function CreatePost() {
     router.back()
   }
 
-  // const {mutateAsync: createdPostFn } = useMutation({
-  //   mutationFn: POST,
-  // })
-
   async function createPost(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
     const title = formData.get("title");
     const description = formData.get("description");
-
-    // createdPostFn(
-    //   title,
-    //   description
-    // )
 
     try {
       const res = await fetch("/api/createPost", {
