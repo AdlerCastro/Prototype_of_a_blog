@@ -37,7 +37,7 @@ export default function Posts() {
           <div key={post._id} className='card-post'>
             <h2>{post.title}</h2>
             <p>{post.description}</p>
-            <button onClick={() => ViewPost(post._id)}>Read more</button>
+            <button className="read-more" onClick={() => ViewPost(post._id)}>Read more</button>
           </div>
         ))}
       </div>
