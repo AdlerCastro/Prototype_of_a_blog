@@ -2,13 +2,6 @@ import mongoose from "mongoose";
 
 const { Schema } = mongoose
 
-const Comment =
-    new Schema({
-        author: String,
-        content: String,
-    });
-
-
 const Posts =
     new Schema({
         title: {
@@ -19,7 +12,10 @@ const Posts =
             type: String,
             require: true
         },
-        comments:{ type: [Comment], default: [] }
+        comments: [{
+                author: String,
+                content: String
+            }]
 
     }, { timestamps: true })
 
