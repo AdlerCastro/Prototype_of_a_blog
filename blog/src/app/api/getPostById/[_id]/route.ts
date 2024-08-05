@@ -44,13 +44,7 @@ export const POST = async (request: Request, context: { params: PostURL }) => {
       return new NextResponse('Post não encontrado', { status: 401 });
     }
 
-    console.log(post.comments)
-
-    if (!Array.isArray(post.comments)) {
-      post.comments = [];
-    }
-
-    console.log(post.comments)
+    console.log(post.comment)
 
     post.comments.push(comment)
     await post.save()
