@@ -8,16 +8,18 @@ import { useRouter } from 'next/navigation'
 
 import './styles.css'
 import Button from '@/components/atoms/Button'
+import { useSession } from 'next-auth/react'
 
 interface Post {
   _id: string;
   title: string;
   description: string;
-  comment: string;
+  comments: Array<{ author: string, content: string }>;
 }
 
 export default function PostDetails() {
 
+  const { data: session } = useSession();
   const router = useRouter();
 
   const routerBack = () => {
@@ -44,16 +46,20 @@ export default function PostDetails() {
     e.preventDefault();
 
     const formData = new FormData(e.currentTarget);
-    const comment = formData.get("comment");
+    const content = formData.get("comment");
+    const author = session?.user?.name
 
     try {
-      const res = await fetch(`/api/${_id}`, {
+      const res = await fetch(`/api/getPostById/${_id}`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json"
         },
         body: JSON.stringify({
-          comment
+          comment: {
+            author,
+            content
+          }
         })
       })
 
@@ -78,7 +84,9 @@ export default function PostDetails() {
           <h2>{data?.title}</h2>
           <p>{data?.description}</p>
           <p>Comentários:</p>
-          <p>{data?.comment}</p>
+          {data?.comments.map((comment, i) => (
+            <p key={i}>{comment.author}: {comment.content}</p>
+          ))}
           <form onSubmit={newComment}>
             <input type="text" name="comment" placeholder='Adicionar Comentário' />
             <Button className="" type='submit'>Adicionar comentário</Button>
