@@ -6,17 +6,19 @@ const Posts =
     new Schema({
         title: {
             type: String,
-            require: true
+            required: true
         },
         description: {
             type: String,
-            require: true
+            required: true
         },
-        comments: [{
+        comments: [
+            {
                 author: String,
                 content: String
-            }]
+            }
+        ]
 
-    }, { timestamps: true })
+    }, { timestamps: true });
 
 export default mongoose.models.Posts || mongoose.model("Posts", Posts)
